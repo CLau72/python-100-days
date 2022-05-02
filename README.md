@@ -17,3 +17,10 @@ A text adventure to play with if/elif/else control-flow. Used the example story 
 ## Day 4 - Rock, Paper, Scissors
 
 A text based Rock paper scissors game. Used to learn about random number generation and lists.
+
+## Day 5 - Password Generator
+
+This project has two different versions. The "easy" version prompts for a number of letters,
+symbols, and numbers and generates a random password with a random set of letters, symbols, and numbers where each of those 3 characters are grouped together.
+
+The "hard" version of the program is the same thing, but randomizes the order of the characters so letters, numbers and symbols are intermixed.
