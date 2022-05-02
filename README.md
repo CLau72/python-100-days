@@ -13,3 +13,7 @@ Simple tip calculator that splits a bill between a group of people.
 ## Day 3 - Text Adventure
 
 A text adventure to play with if/elif/else control-flow. Used the example story because I'm not a creative fella
+
+## Day 4 - Rock, Paper, Scissors
+
+A text based Rock paper scissors game. Used to learn about random number generation and lists.
