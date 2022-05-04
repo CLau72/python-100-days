@@ -24,3 +24,8 @@ This project has two different versions. The "easy" version prompts for a number
 symbols, and numbers and generates a random password with a random set of letters, symbols, and numbers where each of those 3 characters are grouped together.
 
 The "hard" version of the program is the same thing, but randomizes the order of the characters so letters, numbers and symbols are intermixed.
+
+## Day 6 - Maze Solver
+
+Day 6 of the camp was primarily done to create functions and use while loops using [Reeborg's World](https://reeborg.ca/index_en.html)
+The final challenge was to have the robot solve a maze by following the right edge of the wall.
