@@ -15,7 +15,7 @@ while at_goal() == False:
     if front_is_clear() and wall_on_right():
         move()
     # If there isn't a wall on the right, and right is open, turn right and move
-    elif right_is_clear():
+    elif right_is_clear() and not front_is_clear():
         turn_right()
         move()
     # This case will move you forward if you have no walls on any side.   
