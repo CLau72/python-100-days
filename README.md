@@ -29,3 +29,7 @@ The "hard" version of the program is the same thing, but randomizes the order of
 
 Day 6 of the camp was primarily done to create functions and use while loops using [Reeborg's World](https://reeborg.ca/index_en.html)
 The final challenge was to have the robot solve a maze by following the right edge of the wall.
+
+## Day 7 - Hangman
+
+It's Hangman. We all know and love hangman.
