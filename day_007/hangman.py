@@ -33,14 +33,14 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
     return('  ')
 
-
+clear()
 print(hangman_art.logo + '\n')
 
 # Loop the game while blanks exist in the solution or player still has lives
 while '_' in solution and lives > 0:
     # Clear the screen Print the current state of the solution
     # Also print the art based on how many lives are left
-    print(solution)
+    print(' '.join(solution))
     print(art[lives])
 
     # This will hide the guessed letters prompt until the first guess
