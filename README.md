@@ -33,3 +33,7 @@ The final challenge was to have the robot solve a maze by following the right ed
 ## Day 7 - Hangman
 
 It's Hangman. We all know and love hangman.
+
+## Day 8 - Caesar Cypher
+
+Program for encrypting/decrypting  the Caesar Cipher. Used to learn about functions with parameters
