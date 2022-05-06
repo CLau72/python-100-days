@@ -35,7 +35,7 @@ def caesar(direction, message, shift_value):
     print(''.join(output_letters))
 
 # recursive function to restart the program based on prompt.
-# If user wants to restart the program, prmopt for new inputs and call the caesar function
+# If user wants to restart the program, prompt for new inputs and call the caesar function
 # after encoding/decoding, call restart again
 def restart():
     again = input('\nRestart program? (y/n)\n').lower()
