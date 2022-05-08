@@ -37,3 +37,12 @@ It's Hangman. We all know and love hangman.
 ## Day 8 - Caesar Cypher
 
 Program for encrypting/decrypting  the Caesar Cipher. Used to learn about functions with parameters
+
+## Day 9 - Silent Auction
+
+Program that facilitates a silent auction by asking for names and taking bids.
+Once all bids are in, the highest bid is found and a winner is picked.
+
+## Day 10 - Calculator
+
+Making a calculator to start playing a bit with function returns and recursive functions.
