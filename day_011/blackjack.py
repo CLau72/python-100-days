@@ -81,7 +81,7 @@ def blackjack():
                     deal_card(player_hand)
                     player_score = calc_score(player_hand)
                 elif draw == 'n':
-                    while computer_score <= 17:
+                    while computer_score <= 17 and compare_score != 0:
                         deal_card(computer_hand)
                         computer_score = calc_score(computer_hand)
                     game_active = False
