@@ -23,15 +23,19 @@ def calc_score(hand):
     score = sum(hand)
     if len(hand) == 2 and score == 21:
         #Zero score denotes blackjack
-        score == 0
+        score = 0
     elif 11 in hand and score > 21:
         score -= 10
+        hand.remove(11)
+        hand.append(1)
     return score
 
 
 def compare_score(player_final, computer_final):
     if player_final == 0:
         return 'You win! Blackjack!'
+    elif computer_final == 0:
+        return 'Bad Luck. Dealer Blackjack'
     elif player_final > 21:
         return 'Bustin\' does not make me feel good'
     elif computer_final > 21:
@@ -44,51 +48,47 @@ def compare_score(player_final, computer_final):
         return 'Draw'
 
 
-# Overall game logic
 def blackjack():
     player_game_prompt = input('Do you want to play Blackjack? Type "y" or "n": ')
-    
+
     player_hand = []
     computer_hand = []
-    player_busted = False
     game_active = False
-
-    if player_game_prompt == 'y':        
+    
+    if player_game_prompt == 'y':
+        clear()
+        print(logo)
         game_active = True
-        deal_card(player_hand)
-        deal_card(player_hand)
-        deal_card(computer_hand)
-        deal_card(computer_hand)
 
-    clear()
-    print(logo)
-
-    while game_active == True:
-
-        # Calculate initial scores:
-        player_score = calc_score(player_hand)
-        computer_score = calc_score(computer_hand)
-        
-        if player_score > 21:
-            player_busted = True
-
-        print(f'    Your cards: {player_hand}, current score: {player_score}' )
-        print(f'    Computer\'s first card: {computer_hand[0]}')
-
-        if not player_busted:
-            draw = input('Type "y" to get another card, type "n" to pass: ')
-
-        if draw == 'y' and not player_busted:
+        for _ in range(2):
             deal_card(player_hand)
-        elif draw == 'n' or player_busted:
-            while computer_score <= 17:
-                print(f'    Computer\'s final hand: {computer_hand}, final score: {player_score}' )
-                deal_card(computer_hand)
-                computer_score = calc_score(computer_hand)
-            print(f'    Your final hand: {player_hand}, final score: {player_score}' )
-            print(f'    Computer\'s final hand: {computer_hand}, final score: {computer_score}' )
-            print(compare_score(player_score, computer_score))
-            blackjack()
+            deal_card(computer_hand)
 
+        while game_active == True:
+
+            player_score = calc_score(player_hand)
+            computer_score = calc_score(computer_hand)
+
+
+            if player_score == 0 or computer_score == 0 or player_score > 21:
+                game_active = False
+            else:
+                print(f'    Your cards: {player_hand}, current score: {player_score}' )
+                print(f'    Computer\'s first card: {computer_hand[0]}')
+                draw = input('Type "y" to get another card, type "n" to pass: ')
+
+                if draw == 'y':
+                    deal_card(player_hand)
+                    player_score = calc_score(player_hand)
+                elif draw == 'n':
+                    while computer_score <= 17:
+                        deal_card(computer_hand)
+                        computer_score = calc_score(computer_hand)
+                    game_active = False
+
+        print(f'    Your final hand: {player_hand}, final score: {player_score}' )
+        print(f'    Computer\'s final hand: {computer_hand}, final score: {computer_score}' )
+        print(compare_score(player_score, computer_score))
+        blackjack()
 
 blackjack()
