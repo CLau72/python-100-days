@@ -10,7 +10,9 @@ HARD_GUESSES = 5
 
 # Game Function
 def number_guesser(difficulty):
-
+    '''
+    Takes in game difficulty. and initiates game with this difficulty level
+    '''
     # Select random number
     answer = random.randint(1,100)
 
@@ -36,10 +38,13 @@ def number_guesser(difficulty):
         elif guess > answer:
             print('Too High!')
             guesses -=1
+            if guesses == 0:
+                print(f"You are out of turns. Correct answer was {answer}")
         elif guess < answer:
             print('Too Low!')
             guesses -=1
-
+            if guesses == 0:
+                print(f"You are out of turns. Correct answer was {answer}")
         
 print(logo)
 print("I'm thinking of a number between 1 and 100")
