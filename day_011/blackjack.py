@@ -50,46 +50,11 @@ def compare_score(player_final, computer_final):
 
 def blackjack():
     player_game_prompt = input('Do you want to play Blackjack? Type "y" or "n": ')
-<<<<<<< HEAD
     
     #initialize game variables
-=======
-
->>>>>>> ce80a45123762c289a2c9527f07273bca985433c
     player_hand = []
     computer_hand = []
     game_active = False
-<<<<<<< HEAD
-
-    if player_game_prompt == 'y': 
-        # Set gamestate to true and deal cards       
-        game_active = True
-        deal_card(player_hand)
-        deal_card(player_hand)
-        deal_card(computer_hand)
-        deal_card(computer_hand)
-    # clear the screen and print the logo
-    clear()
-    print(logo)
-
-    # Main game logic loop
-    while game_active == True:
-        
-        # Calculate initial scores:
-        player_score = calc_score(player_hand)
-        computer_score = calc_score(computer_hand)
-        # set to true if busted to bypass a lot of the extra logic
-        if player_score > 21:
-            player_busted = True
-
-        print(f'    Your cards: {player_hand}, current score: {player_score}' )
-        print(f'    Computer\'s first card: {computer_hand[0]}')
-
-        if not player_busted:
-            draw = input('Type "y" to get another card, type "n" to pass: ')
-
-        if draw == 'y' and not player_busted:
-=======
     
     if player_game_prompt == 'y':
         clear()
@@ -97,7 +62,6 @@ def blackjack():
         game_active = True
 
         for _ in range(2):
->>>>>>> ce80a45123762c289a2c9527f07273bca985433c
             deal_card(player_hand)
             deal_card(computer_hand)
 
