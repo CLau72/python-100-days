@@ -23,7 +23,6 @@ def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
     return('  ')
 
-# TODO Repeat game while user is answering correctly.
 def game():
 
     # Initialize score, set game state to True, and generate a random value for A
