@@ -50,7 +50,8 @@ def compare_score(player_final, computer_final):
 
 def blackjack():
     player_game_prompt = input('Do you want to play Blackjack? Type "y" or "n": ')
-
+    
+    #initialize game variables
     player_hand = []
     computer_hand = []
     game_active = False
