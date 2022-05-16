@@ -31,15 +31,14 @@ def painting(x_dots, y_dots, pallet_source, pallet_depth):
         else:
             painter.setheading(180)
         for x in range(x_dots):
-            painter.color(random.choice(colors))
-            painter.dot(50)
+            painter.dot(20,random.choice(colors))
             if x < x_dots - 1:
-                painter.forward(100)
+                painter.forward(50)
         painter.setheading(90)
-        painter.forward(100)
+        painter.forward(50)
         
 
 
-painting(5,5,"./art/image.jpg",7)
+painting(10,10,"./art/atl.jpg",7)
 
 screen.exitonclick()
