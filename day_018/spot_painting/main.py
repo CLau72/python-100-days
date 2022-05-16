@@ -4,9 +4,9 @@ from turtle import Turtle, Screen
 
 
 painter = Turtle()
-painter.shape("turtle")
 painter.speed("fastest")
 painter.penup()
+painter.hideturtle()
 
 screen = Screen()
 screen.colormode(255)
@@ -37,7 +37,7 @@ def painting(x_dots, y_dots, pallet_source, pallet_depth):
                 painter.forward(50)
         painter.setheading(90)
         painter.forward(50)
-        
+
 
 
 painting(10,10,"./art/atl.jpg",7)
