@@ -1,4 +1,4 @@
-import colorgram 
+import colorgram
 import random
 from turtle import Turtle, Screen
 
@@ -6,7 +6,6 @@ from turtle import Turtle, Screen
 painter = Turtle()
 painter.shape("turtle")
 painter.penup()
-painter.home()
 
 screen = Screen()
 screen.colormode(255)
@@ -22,20 +21,7 @@ def color_pallet(image_file, num_colors):
     return rgb_pallet
     
 
-def random_walk():
-    painter.pensize(5)
-    painter.speed("fast")
-    angles = [0, 45, 90, 135, 180, 225, 270, 315]
-    for _ in range(1000):
-        color = random.choice(colors)
-        painter.color(color)
-
-        painter.forward(50)
-        painter.setheading(random.choice(angles))
-
 def painting(x_dots, y_dots, pallet_source, pallet_depth):
-
-    
     # Generate color pallet list
     colors = color_pallet(pallet_source, pallet_depth)
 
