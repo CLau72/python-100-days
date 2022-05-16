@@ -5,6 +5,7 @@ from turtle import Turtle, Screen
 
 painter = Turtle()
 painter.shape("turtle")
+painter.speed("fastest")
 painter.penup()
 
 screen = Screen()
