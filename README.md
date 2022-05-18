@@ -46,3 +46,37 @@ Once all bids are in, the highest bid is found and a winner is picked.
 ## Day 10 - Calculator
 
 Making a calculator to start playing a bit with function returns and recursive functions.
+
+## Day 12 - Number Guesser
+
+Game to guess a random number. Game will give feedback on if the number is higher or lower.
+
+## Day 13 - Debugging
+
+File contains some debugged exercises used to help in the debugging process.
+
+## Day 14 - High/Low
+
+Takes a dictionary of a bunch of celebrities and has the user guess which celebrity has more instagram followers
+
+## Day 15 - Coffee Machine
+
+Simulated coffee machine that keeps track of stored ingredients
+
+## Day 16 - OOP Coffee Machine
+
+Remade coffee machine, but using some Object Orient Programming priciples
+
+## Day 17 - Quiz Game
+
+A True/False quiz game used to practice instantiating classes
+
+## Day 18 - Spot Painting
+
+Program to start working with the Turtle module for programs with a UI. This one takes an input picture, extracts the colors using the Colorgram module, and randomly creates a spot painting
+
+## Day 19 - Etch-a-Sketch / Turtle Race
+
+The first project was basically using turtle event listeners to make an Etch-a-Sketch
+
+The second project generated instances of turtles with diffferent colors, and then had them race across the screen. User is able to bet on which turtle they think will win.
