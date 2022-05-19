@@ -80,3 +80,7 @@ Program to start working with the Turtle module for programs with a UI. This one
 The first project was basically using turtle event listeners to make an Etch-a-Sketch
 
 The second project generated instances of turtles with different colors, and then had them race across the screen. User is able to bet on which turtle they think will win.
+
+## Day 20/21 Snake
+
+Make snake using the Turtle module and class inheritance.
