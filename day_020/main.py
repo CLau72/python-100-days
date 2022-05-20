@@ -41,11 +41,4 @@ while game_active:
             game_active = False
             score.game_over()
 
-   # for segment in range(1,len(snake.segments)):
-   #     if snake.head.distance(snake.segments[segment]) < 15:
-   #         game_active = False
-   #         score.game_over()
-
-
-
 screen.exitonclick()
