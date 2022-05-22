@@ -70,7 +70,7 @@ while game_active:
         ball.ball_reset()
 
     # Game over state
-    if p1_score.score >= 7 or p1_score.score >=7:
+    if p1_score.score >= 7 or p2_score.score >=7:
         p1_score.game_over()
         game_active = False
 
