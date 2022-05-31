@@ -1,3 +1,4 @@
+from cgitb import text
 from ctypes import alignment
 from tkinter import *
 import random
@@ -11,15 +12,22 @@ SYMBOLS = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_pass():
     pass
-
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_pass():
-    pass
+    with open(file="data.txt", mode="a") as f:
+        website = website_input.get()
+        user = user_input.get()
+        password = pass_input.get()
+        data = f"{website} | {user} | {password}\n"
+        f.writelines(data)
+    
+    website_input.delete(0,"end")
+    pass_input.delete(0,"end")
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
 window.title("MyPass")
-window.config(padx=20,pady=20, bg=WHITE)
+window.config(padx=50,pady=50, bg=WHITE)
 
 canvas = Canvas(width=200, height=200, bg=WHITE, highlightthickness=0)
 logo_img = PhotoImage(file="./logo.png")
@@ -39,19 +47,24 @@ password_label.grid(column=0, row=3)
 
 # INPUT FIELDS
 website_input = Entry()
+website_input.config(width=35)
 website_input.grid(column=1, row=1, columnspan=2)
+website_input.focus()
 
-user_input = Entry(text="carselau@gmail.com")
+user_input = Entry()
+user_input.config(width=35)
+user_input.insert(0, "carselau@gmail.com")
 user_input.grid(column=1, row=2, columnspan=2)
 
 pass_input = Entry()
-pass_input.grid(column=1, row=3, columnspan=2)
+pass_input.config(width=18)
+pass_input.grid(column=1, row=3)
 
 # BUTTONS
-gen_pass_button = Button(text="Generate Password", command=generate_pass)
+gen_pass_button = Button(text="Generate Password", command=generate_pass, width=14)
 gen_pass_button.grid(column=2, row=3)
 
-add_pass_button = Button(text="Add", command=save_pass)
+add_pass_button = Button(text="Add", command=save_pass, width=33)
 add_pass_button.grid(column=1, row=4, columnspan=2)
 
 window.mainloop()
