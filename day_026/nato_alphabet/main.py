@@ -6,10 +6,17 @@ alphabet_df = pandas.read_csv("./nato_phonetic_alphabet.csv")
 nato_alphabet = {row.letter:row.code for index, row in alphabet_df.iterrows()}
 
 # Take in a string and give the NATO phonetic sound for each letter
-def nato_translate(input_str):
-    translation = [nato_alphabet[letter] for letter in input_str.upper()]
-    return translation
+def nato_translate():
+    input_str = input("Enter value to translate: ").upper()
+
+    try:
+        translation = [nato_alphabet[letter] for letter in input_str]
+    except KeyError:
+        print("Only input letters")
+        nato_translate()
+    else:
+        print(translation)
 
 # Prompt for input and print list of phonetic sounds
-input_str = input("Enter value to translate: ")
-print(nato_translate(input_str))
+
+nato_translate()
