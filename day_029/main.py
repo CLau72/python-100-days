@@ -1,7 +1,9 @@
-from cgitb import text
-from ctypes import alignment
+
 from tkinter import *
+from tkinter import messagebox
 import random
+import pyperclip
+
 
 # ---------------------------- CONSTANTS --------------------------------#
 WHITE = "#FFFFFF"
@@ -11,18 +13,54 @@ SYMBOLS = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_pass():
-    pass
+
+    pass_input.delete(0,"end")
+
+    nr_letters= random.randint(8,10)
+    nr_symbols = random.randint(2,4)
+    nr_numbers = random.randint(2,4)
+
+    # Create empty list for characters
+    password_chars = []
+
+    # append characters into list to build up password
+
+    password_chars += [random.choice(LETTERS) for n in range(1,nr_letters + 1)]
+    password_chars += [random.choice(SYMBOLS) for n in range(1,nr_symbols + 1)]
+    password_chars += [random.choice(NUMBERS) for n in range(1,nr_numbers + 1)]
+
+    # Shuffle the password_chars list
+    random.shuffle(password_chars)
+
+    # Join chars together to make password string
+    password = ''.join(password_chars)
+
+    pass_input.insert(0,password)
+    
+    pyperclip.copy(password)
+
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_pass():
-    with open(file="data.txt", mode="a") as f:
-        website = website_input.get()
-        user = user_input.get()
-        password = pass_input.get()
-        data = f"{website} | {user} | {password}\n"
-        f.writelines(data)
-    
-    website_input.delete(0,"end")
-    pass_input.delete(0,"end")
+
+    website = website_input.get()
+    user = user_input.get()
+    password = pass_input.get()
+
+    if website and user and password:
+
+        confirmation = messagebox.askokcancel(title="Confirm?", message=f"Save {password} as password for \n {user} on {website}?" )
+
+        if confirmation:
+            with open(file="data.txt", mode="a") as f:
+              data = f"{website} | {user} | {password}\n"
+              f.writelines(data)
+        
+            website_input.delete(0,"end")
+            pass_input.delete(0,"end")
+
+    else:
+        messagebox.showerror(title="Aw Beans", message="One or more fields requires an entry.")
+
 # ---------------------------- UI SETUP ------------------------------- #
 
 window = Tk()
