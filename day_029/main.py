@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
+import json
 
 
 # ---------------------------- CONSTANTS --------------------------------#
@@ -45,21 +46,50 @@ def save_pass():
     website = website_input.get()
     user = user_input.get()
     password = pass_input.get()
+    new_data = {
+        website: {
+            "email": user,
+            "password": password,
+        }
+    }
 
     if website and user and password:
 
         confirmation = messagebox.askokcancel(title="Confirm?", message=f"Save {password} as password for \n {user} on {website}?" )
 
         if confirmation:
-            with open(file="data.txt", mode="a") as f:
-              data = f"{website} | {user} | {password}\n"
-              f.writelines(data)
+            try:
+                with open(file="data.json", mode="r") as f:
+                    data = json.load(f)
+            except FileNotFoundError:
+                data = {}
+            finally:    
+                data.update(new_data)
+                with open(file="data.json", mode="w") as f:
+                    json.dump(data,f, indent=4)
         
             website_input.delete(0,"end")
             pass_input.delete(0,"end")
 
     else:
         messagebox.showerror(title="Aw Beans", message="One or more fields requires an entry.")
+# ---------------------------- SEARCH --------------------------------- #
+def search():
+    try:
+        f = open("data.json", "r")
+        search_data = json.load(f)
+        website = website_input.get()
+        user = search_data[website]["email"]
+        password = search_data[website]["password"]
+    except FileNotFoundError:
+        messagebox.showerror(title="Aw Beans", message="No password data available")
+    except KeyError:
+        messagebox.showwarning(title="Website not found", message=f"No data for {website} available")
+    else:
+        messagebox.showinfo(title="Search Results", message=f"{website}\nUsername:\n{user}\nPassword:\n{password}\n\n Password copied to clipboard")
+        pyperclip.copy(password)
+    finally:
+        f.close()
 
 # ---------------------------- UI SETUP ------------------------------- #
 
@@ -85,8 +115,8 @@ password_label.grid(column=0, row=3)
 
 # INPUT FIELDS
 website_input = Entry()
-website_input.config(width=35)
-website_input.grid(column=1, row=1, columnspan=2)
+website_input.config(width=18)
+website_input.grid(column=1, row=1)
 website_input.focus()
 
 user_input = Entry()
@@ -104,5 +134,8 @@ gen_pass_button.grid(column=2, row=3)
 
 add_pass_button = Button(text="Add", command=save_pass, width=33)
 add_pass_button.grid(column=1, row=4, columnspan=2)
+
+search_button = Button(text="Search", command=search, width=14)
+search_button.grid(column=2, row=1 )
 
 window.mainloop()
