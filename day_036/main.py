@@ -2,12 +2,19 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 import requests
+from twilio.rest import Client
 
 load_dotenv()
 STOCK = os.getenv("STOCK")
 COMPANY_NAME = os.getenv("COMPANY_NAME")
 AV_API_KEY = os.getenv("AV_API_KEY")
 NEWS_API_KEY = os.getenv("NEWS_API_KEY")
+TWILIO_SID = os.getenv("TWILIO_SID")
+TWILIO_API_KEY =  os.getenv("TWILIO_API_KEY")
+FROM_PHONE = os.getenv("FROM_PHONE")
+TO_PHONE = os.getenv("TO_PHONE")
+
+
 ## STEP 1: Use https://www.alphavantage.co
 # When STOCK price increase/decreases by 5% between yesterday and the day before yesterday then print("Get News").
 def five_percent_swing():
@@ -44,15 +51,60 @@ def five_percent_swing():
 ## STEP 2: Use https://newsapi.org
 # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 def get_news():
-    pass
+    parameters = {
+        "q": COMPANY_NAME,
+        "apiKey": NEWS_API_KEY,
+        "language": "en",
+        "pageSize": 3
+    }
+
+    response = requests.get(url="https://newsapi.org/v2/everything", params=parameters)
+
+    data = response.json()
+    
+    articles = [article["title"] for article in data["articles"]]
+    return articles
+
+    
 ## STEP 3: Use https://www.twilio.com
 # Send a seperate message with the percentage change and each article's title and description to your phone number. 
 
+def send_message(percent, articles):
 
-if abs(five_percent_swing()) >= 5:
-    print("Get News")
-else:
-    print("Nothing to see here")
+    if percent > 0:
+        text_message = f"""
+        {COMPANY_NAME} is 📈 {percent} today.\n
+        Related Stories:
+        {articles[0]}\n
+        {articles[1]}\n
+        {articles[2]}
+        """
+    else:
+        text_message = f"""
+        {COMPANY_NAME} is 📉 {percent} today.\n
+        Related Stories:
+        {articles[0]}\n
+        {articles[1]}\n
+        {articles[2]}
+        """
+
+    client = Client(TWILIO_SID, TWILIO_API_KEY)
+
+    message = client.messages \
+                    .create(
+                        body = text_message,
+                        from_= FROM_PHONE,
+                        to= TO_PHONE
+                    )
+
+    print(message.sid)
+
+
+articles = get_news()
+
+send_message(6,articles)
+
+
 
 
 #Optional: Format the SMS message like this: 
